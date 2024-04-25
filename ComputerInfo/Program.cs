@@ -1,46 +1,69 @@
 ﻿using System;
-public class Computer
-{
-    public string Name { get; set; }
-    public string CPU { get; set; }
-    public int RAM { get; set; }
-    public int Storage { get; set; }
 
-    public Computer(string name, string cpu, int ram, int storage)
+class Calculator
+{
+    public double Add(double a, double b)
     {
-        Name = name;
-        CPU = cpu;
-        RAM = ram;
-        Storage = storage;
+        return a + b;
     }
 
-    public void DisplayInfo()
+    public double Subtract(double a, double b)
     {
-        Console.WriteLine($"Computer Name: {Name}");
-        Console.WriteLine($"CPU: {CPU}");
-        Console.WriteLine($"RAM: {RAM}GB");
-        Console.WriteLine($"Storage: {Storage}GB");
+        return a - b;
     }
-}
 
-public class ComputerInformationSystem
-{
-    public void GatherInformation(Computer computer)
+    public double Multiply(double a, double b)
     {
-        Console.WriteLine("Gathering information about the computer...");
+        return a * b;
+    }
+
+    public double Divide(double a, double b)
+    {
+        if (b == 0)
+        {
+            Console.WriteLine("Error: division by zero.");
+            return double.NaN; // NaN - Not a Number
+        }
+        return a / b;
     }
 }
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Computer myComputer = new Computer("My PC", "Intel Core i7", 16, 512);
-        myComputer.DisplayInfo();
+        Calculator calculator = new Calculator();
 
-        ComputerInformationSystem informationSystem = new ComputerInformationSystem();
-        informationSystem.GatherInformation(myComputer);
+        Console.WriteLine("Enter first number:");
+        double num1 = double.Parse(Console.ReadLine());
 
-        Console.ReadLine();
+        Console.WriteLine("Enter second number:");
+        double num2 = double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter operation (+, -, *, /):");
+        char operation = char.Parse(Console.ReadLine());
+
+        double result = 0;
+
+        switch (operation)
+        {
+            case '+':
+                result = calculator.Add(num1, num2);
+                break;
+            case '-':
+                result = calculator.Subtract(num1, num2);
+                break;
+            case '*':
+                result = calculator.Multiply(num1, num2);
+                break;
+            case '/':
+                result = calculator.Divide(num1, num2);
+                break;
+            default:
+                Console.WriteLine("Invalid operation.");
+                return;
+        }
+
+        Console.WriteLine("Result: " + result);
     }
 }
