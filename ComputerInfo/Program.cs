@@ -1,69 +1,60 @@
 ﻿using System;
-
-class Calculator
-{
-    public double Add(double a, double b)
-    {
-        return a + b;
-    }
-
-    public double Subtract(double a, double b)
-    {
-        return a - b;
-    }
-
-    public double Multiply(double a, double b)
-    {
-        return a * b;
-    }
-
-    public double Divide(double a, double b)
-    {
-        if (b == 0)
-        {
-            Console.WriteLine("Error: division by zero.");
-            return double.NaN; // NaN - Not a Number
-        }
-        return a / b;
-    }
-}
+using System.Collections.Generic;
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        Calculator calculator = new Calculator();
-
-        Console.WriteLine("Enter first number:");
-        double num1 = double.Parse(Console.ReadLine());
-
-        Console.WriteLine("Enter second number:");
-        double num2 = double.Parse(Console.ReadLine());
-
-        Console.WriteLine("Enter operation (+, -, *, /):");
-        char operation = char.Parse(Console.ReadLine());
-
-        double result = 0;
-
-        switch (operation)
+        List<Product> initialProducts = new List<Product>
         {
-            case '+':
-                result = calculator.Add(num1, num2);
-                break;
-            case '-':
-                result = calculator.Subtract(num1, num2);
-                break;
-            case '*':
-                result = calculator.Multiply(num1, num2);
-                break;
-            case '/':
-                result = calculator.Divide(num1, num2);
-                break;
-            default:
-                Console.WriteLine("Invalid operation.");
-                return;
+            new Product { Name = "Папір", Quantity = 100 },
+            new Product { Name = "Олівець", Quantity = 50 },
+        };
+
+        initialProducts.Add(new Product { Name = "Ручка", Quantity = 80 });
+
+        foreach (var product in initialProducts)
+        {
+            product.Price = GetPriceFromDatabase(product.Name);
         }
 
-        Console.WriteLine("Result: " + result);
+        initialProducts.Sort((x, y) => y.Quantity.CompareTo(x.Quantity));
+        initialProducts.Sort((x, y) => x.Name.CompareTo(y.Name));
+
+        foreach (var product in initialProducts)
+        {
+            product.Category = GetCategoryFromDatabase(product.Name);
+        }
+
+        foreach (var product in initialProducts)
+        {
+            Console.WriteLine($"Назва: {product.Name}, Кількість: {product.Quantity}, Ціна: {product.Price}, Категорія: {product.Category}");
+        }
+
+        string categoryToSearch = "Канцелярські товари";
+        var productsInCategory = initialProducts.FindAll(product => product.Category == categoryToSearch);
+        Console.WriteLine($"Товари у категорії '{categoryToSearch}':");
+        foreach (var product in productsInCategory)
+        {
+            Console.WriteLine($"Назва: {product.Name}, Кількість: {product.Quantity}, Ціна: {product.Price}");
+        }
+    }
+
+    static decimal GetPriceFromDatabase(string productName)
+    {
+        return 10.0m;
+    }
+
+    static string GetCategoryFromDatabase(string productName)
+    {
+        return "Канцелярські товари";
+    }
+
+    class Product
+    {
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public string Category { get; set; }
     }
 }
