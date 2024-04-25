@@ -1,0 +1,14 @@
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\bin\Debug\net8.0\ComputerInfo.exe
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\bin\Debug\net8.0\ComputerInfo.deps.json
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\bin\Debug\net8.0\ComputerInfo.runtimeconfig.json
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\bin\Debug\net8.0\ComputerInfo.dll
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\bin\Debug\net8.0\ComputerInfo.pdb
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ComputerInfo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ComputerInfo.AssemblyInfoInputs.cache
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ComputerInfo.AssemblyInfo.cs
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ComputerInfo.csproj.CoreCompileInputs.cache
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ComputerInfo.dll
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\refint\ComputerInfo.dll
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ComputerInfo.pdb
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ComputerInfo.genruntimeconfig.cache
+C:\Users\dimas\source\repos\ComputerInfo\ComputerInfo\obj\Debug\net8.0\ref\ComputerInfo.dll
