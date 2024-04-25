@@ -1,46 +1,60 @@
 ﻿using System;
-public class Computer
-{
-    public string Name { get; set; }
-    public string CPU { get; set; }
-    public int RAM { get; set; }
-    public int Storage { get; set; }
-
-    public Computer(string name, string cpu, int ram, int storage)
-    {
-        Name = name;
-        CPU = cpu;
-        RAM = ram;
-        Storage = storage;
-    }
-
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"Computer Name: {Name}");
-        Console.WriteLine($"CPU: {CPU}");
-        Console.WriteLine($"RAM: {RAM}GB");
-        Console.WriteLine($"Storage: {Storage}GB");
-    }
-}
-
-public class ComputerInformationSystem
-{
-    public void GatherInformation(Computer computer)
-    {
-        Console.WriteLine("Gathering information about the computer...");
-    }
-}
+using System.Collections.Generic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Computer myComputer = new Computer("My PC", "Intel Core i7", 16, 512);
-        myComputer.DisplayInfo();
+        List<Product> initialProducts = new List<Product>
+        {
+            new Product { Name = "Папір", Quantity = 100 },
+            new Product { Name = "Олівець", Quantity = 50 },
+        };
 
-        ComputerInformationSystem informationSystem = new ComputerInformationSystem();
-        informationSystem.GatherInformation(myComputer);
+        initialProducts.Add(new Product { Name = "Ручка", Quantity = 80 });
 
-        Console.ReadLine();
+        foreach (var product in initialProducts)
+        {
+            product.Price = GetPriceFromDatabase(product.Name);
+        }
+
+        initialProducts.Sort((x, y) => y.Quantity.CompareTo(x.Quantity));
+        initialProducts.Sort((x, y) => x.Name.CompareTo(y.Name));
+
+        foreach (var product in initialProducts)
+        {
+            product.Category = GetCategoryFromDatabase(product.Name);
+        }
+
+        foreach (var product in initialProducts)
+        {
+            Console.WriteLine($"Назва: {product.Name}, Кількість: {product.Quantity}, Ціна: {product.Price}, Категорія: {product.Category}");
+        }
+
+        string categoryToSearch = "Канцелярські товари";
+        var productsInCategory = initialProducts.FindAll(product => product.Category == categoryToSearch);
+        Console.WriteLine($"Товари у категорії '{categoryToSearch}':");
+        foreach (var product in productsInCategory)
+        {
+            Console.WriteLine($"Назва: {product.Name}, Кількість: {product.Quantity}, Ціна: {product.Price}");
+        }
+    }
+
+    static decimal GetPriceFromDatabase(string productName)
+    {
+        return 10.0m;
+    }
+
+    static string GetCategoryFromDatabase(string productName)
+    {
+        return "Канцелярські товари";
+    }
+
+    class Product
+    {
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public string Category { get; set; }
     }
 }
